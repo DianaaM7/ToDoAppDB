@@ -6,7 +6,8 @@
              x:DataType="vm:ToDoPageViewModel"
              x:Class="ToDoAppDB.Views.ToDoPage"
              BackgroundImageSource="blue.jpeg"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:controls="clr-namespace:AlohaKit.Controls;assembly=AlohaKit">
 
     <Grid RowDefinitions="auto, auto, *"
           ColumnDefinitions="*,*,*,*,*"
@@ -35,7 +36,7 @@
 
         <Button Grid.Row="1"
                 Text="Add"
-                Margin="3,10"
+                Margin="0,10"
                 FontSize="16"
                 Command ="{Binding AddCommand}" />
 
@@ -60,16 +61,22 @@
                                                BackgroundColor="Red"
                                                IconImageSource="delete.png"
                                                Command="{Binding Source={x:RelativeSource AncestorType={x:Type vm:ToDoPageViewModel}}, Path=DeleteFromDbCommand}"
-                                               CommandParameter="{Binding .}">
+                                               CommandParameter="{Binding .}"
+>
                                     </SwipeItem>
                                 </SwipeItems>
                             </SwipeView.RightItems>
 
 
-                            <Grid ColumnDefinitions="auto, *">
-                                <CheckBox Grid.Column="0"
+                            <Grid ColumnDefinitions="auto, *" Margin="5,7">
+                                <controls:CheckBox Grid.Column="0"
                                           x:Name="checkBox"
-                                          IsChecked="{Binding IsDone}" />
+                                          IsChecked="{Binding IsDone}"
+                                          CheckedCommand="{Binding Source={x:RelativeSource AncestorType={x:Type vm:ToDoPageViewModel}}, Path=CheckedCommand}"
+                                          CheckedCommandParameter="{Binding Id}"
+                                          UncheckedCommand="{Binding Source={x:RelativeSource AncestorType={x:Type vm:ToDoPageViewModel}}, Path=UncheckedCommand}"
+                                          UncheckedCommandParameter="{Binding Id}"
+                                          CheckedBrush="#006c96"/>
                                 <Label Grid.Column="1"
                                        VerticalTextAlignment="Center"
                                        Text="{Binding Task}"

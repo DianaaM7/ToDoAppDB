@@ -104,6 +104,22 @@ namespace ToDoAppDB.ViewModels
             await AppShell.Current.GoToAsync(nameof(AddPage));
         }
 
+        [RelayCommand]
+        private async void Checked(int id)
+        {
+            var toDo = ToDos.Where(x => x.Id == id).Last();
+            toDo.IsDone = true;
+            await _dbConnection.UpdateItemAsync(toDo);
+        }
+
+        [RelayCommand]
+        private async void Unchecked(int id)
+        {
+            var toDo = ToDos.Where(x => x.Id == id).Last();
+            toDo.IsDone = false;
+            await _dbConnection.UpdateItemAsync(toDo);
+        }
+
         public void Receive(DeleteItemMessage message)
         {
             MainThread.BeginInvokeOnMainThread(() =>

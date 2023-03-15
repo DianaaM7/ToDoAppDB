@@ -26,4 +26,5 @@ public partial class ToDoPage : ContentPage
         toDoPageViewModel.LoadListCommand.Execute(null);
     }
 
+    
 }

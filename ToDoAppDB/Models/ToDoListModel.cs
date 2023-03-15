@@ -1,9 +1,10 @@
-﻿using SQLite;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using SQLite;
 
 namespace ToDoAppDB.Models;
 
 [Table("ToDoListModel")]
-public class ToDoListModel
+public class ToDoListModel 
 {
 
     [PrimaryKey, AutoIncrement]
